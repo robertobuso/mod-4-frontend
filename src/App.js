@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import './App.css';
-import ThisIsATest from './ThisIsATest'
+import { BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import WelcomePage from './Routes/WelcomePage'
+import SignUpForm from './Routes/SignUpForm'
 
 class App extends Component {
 
   constructor() {
     super()
     this.state = {
-      users: []
+      users: [],
+      usernameValue: ""
     }
   }
 
@@ -16,12 +19,48 @@ class App extends Component {
     .then(r => r.json())
     .then(users => this.setState({users}))
   }
-  render() {
-    console.log(this.state.users)
+
+  
+  handleOnChange = (e) => {
+    this.setState({usernameValue: e.target.value})
+  } 
+  
+  renderWelcomePage = () => {
     return (
-      <div className="App">
-        <ThisIsATest users={this.state.users}/>
-      </div>
+      <WelcomePage users={this.state.users} handleOnChange={this.handleOnChange} />
+        )
+  }
+
+  renderSignUpForm = () => {
+    return (
+      <SignUpForm currentUser={this.state.usernameValue} />
+    )
+  }
+
+  findUsernameValue = () => {
+    return this.state.users.find( user => user.username === this.state.usernameValue )
+  }
+
+  renderPage = () => {
+    if (this.findUsernameValue === undefined){
+      return this.renderSignUpForm
+    }
+  }
+
+
+  render() {
+    console.log(this.state.usernameValue)
+    return (
+            <div className="App">
+              <Router>
+                <Switch>
+                <Route path="/welcome" render={this.renderWelcomePage}/>
+                <Route path="/signup" render={this.renderPage}/>
+                </Switch>
+              </Router>
+            </div>
+
+
     );
   }
 }
