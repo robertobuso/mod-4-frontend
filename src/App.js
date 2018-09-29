@@ -53,25 +53,23 @@ class App extends Component {
       <MainPage
         app={this.state}
       />
-        )
+    )
   }
-
 
   render() {
     console.log(this.state.usernameValue)
     return (
-            <div className="App">
-              <Router>
-                <Switch>
-                  <Route path="/welcome" render={this.renderWelcomePage}/>
-                  <Route path="/signup" render={this.renderPage}/>
-                  <Route path="/mainpage" render={this.renderMainPage}/>
-                </Switch>
-              </Router>
-            </div>
-          )
+      <div className="App">
+        <Router>
+          <Switch>
+            <Route path="/welcome" render={this.renderWelcomePage}/>
+            <Route path="/signup" render={this.renderPage}/>
+            <Route path="/mainpage" render={this.renderMainPage}/>
+          </Switch>
+        </Router>
+      </div>
+    )
   }
-
 }
 
 export default App;

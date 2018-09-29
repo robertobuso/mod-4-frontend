@@ -3,10 +3,11 @@ import CurrentUserThumbnail from '../Components/CurrentUserThumbnail'
 import NewMemberContainer from '../Components/NewMemberContainer'
 import SearchBar from '../Components/SearchBar'
 import SearchResultsContainer from '../Components/SearchResultsContainer'
+import UserDetailsPage from '../Components/UserDetailsPage'
 
 class MainPage extends Component {
 
-  state = {nameSearchQuery: ''}
+  state = {nameSearchQuery: '', clickedUser: ''}
 
   handleNameSearch = (event) => {
     this.setState({nameSearchQuery: event.target.value}, () => this.filterByName())
@@ -16,17 +17,31 @@ class MainPage extends Component {
     return this.props.app.users.filter(user => user.name.toLowerCase().includes(this.state.nameSearchQuery.toLowerCase()))
   }
 
+  handleDoubleClick= (id) => {
+    console.log(id)
+    return (
+      <UserDetailsPage
+        user={this.state}
+      />
+    )
+  }
+
   render() {
 
     return(
       <div>
         <SearchBar handleNameSearch={this.handleNameSearch}/>
         <br/>
-        <CurrentUserThumbnail user={this.props.app.currentUser}
+        <CurrentUserThumbnail       user={this.props.app.currentUser}
+          handleDoubleClick={this.handleDoubleClick}
         />
         <br/>
-        <NewMemberContainer users={this.props.app.users}/>
-        <SearchResultsContainer users={this.filterByName()}/>
+        <NewMemberContainer
+          users={this.props.app.users}
+          handleDoubleClick={this.handleDoubleClick}/>
+        <SearchResultsContainer
+          users={this.filterByName()}
+          handleDoubleClick={this.handleDoubleClick}/>
       </div>
     )
   }

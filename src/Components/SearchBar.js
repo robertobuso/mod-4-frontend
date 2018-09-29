@@ -1,16 +1,18 @@
 import React, { Component } from 'react'
-
+import { Sticky } from 'semantic-ui-react'
 class SearchBar extends Component {
 
   render() {
     return(
-      <div style={{border:'10px solid black'}}>
-        <input
-          type="text"
-          
-          onChange={this.props.handleNameSearch}
-        />
-      </div>
+      <Sticky>
+        <div style={{border:'10px solid black'}}>
+          <input
+            type="text"
+            value={this.props.nameSearchQuery}
+            onChange={this.props.handleNameSearch}
+          />
+        </div>
+      </Sticky>
 
     )}
   }

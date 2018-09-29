@@ -1,27 +1,31 @@
 import React, { Component } from 'react'
 import UserThumbnail from './UserThumbnail'
-import { Grid } from 'semantic-ui-react'
+import { Grid, Segment, Header, Icon } from 'semantic-ui-react'
 
 class NewMemberContainer extends Component {
 
   render() {
     return(
-      <Grid.Column style={{border:'1px solid red'}}>
-        {/* <Menu
-          items=
+      <Segment>
+        <Header size='medium' textAlign='center'>
+          The Two Most Recent Members
+          Are
+        </Header>
+        <Grid centered columns={5} relaxed style={{border:'1px solid red'}}>
           {this.props.users.slice(-2).map(user =>
-            { key: {user.id}, name: {user.name}, content: {<UserThumbnail user={user} />}}) }
-          pointing
-          secondary
-        /> */}
+            <Grid.Column key={user.id} >
+              <Segment basic>
+                <UserThumbnail
+                  user={user}
+                  handleDoubleClick={this.props.handleDoubleClick}/>
+                <br/>
+              </Segment>
+            </Grid.Column>
+          )}
+        </Grid>
+      </Segment>
+            )
+          }
 
-              The Two Most Recent Members Are:
-              {this.props.users.slice(-2).map(user =>
-                <span key={user.id}>
-                  <UserThumbnail user={user} />
-          </span>)}
-      </Grid.Column>
-
-    )}
   }
 export default NewMemberContainer;
