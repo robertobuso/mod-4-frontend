@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Popup } from 'semantic-ui-react'
+import { Button, Popup, Image } from 'semantic-ui-react'
 
 class UserThumbnail extends Component {
 
@@ -7,8 +7,8 @@ class UserThumbnail extends Component {
     return(
       <div>
         <Popup
-          trigger={<Button onDoubleClick={() => this.props.handleDoubleClick(this.props.user.id)}>
-            <img src={this.props.user.img_url} height="50" width="50" alt='current user'/>
+          trigger={<Button text-align='center' onDoubleClick={() => this.props.handleDoubleClick(this.props.user.id)}>
+            <Image src={this.props.user.img_url} height="50" width="50" alt='current user' circular/>
             {this.props.user.name}
           </Button>}
           content='This would be the Users Card with User Details'

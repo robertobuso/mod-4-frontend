@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import UserThumbnail from './UserThumbnail'
-import { Grid, Segment, Header, Icon } from 'semantic-ui-react'
+import { Grid, Segment, Header } from 'semantic-ui-react'
 
 class NewMemberContainer extends Component {
 
@@ -8,8 +8,7 @@ class NewMemberContainer extends Component {
     return(
       <Segment>
         <Header size='medium' textAlign='center'>
-          The Two Most Recent Members
-          Are
+          Our Newest Members!
         </Header>
         <Grid centered columns={5} relaxed style={{border:'1px solid red'}}>
           {this.props.users.slice(-2).map(user =>

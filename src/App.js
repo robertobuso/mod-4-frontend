@@ -57,7 +57,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state.usernameValue)
     return (
       <div className="App">
         <Router>
