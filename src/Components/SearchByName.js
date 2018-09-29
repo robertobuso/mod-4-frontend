@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Input, Sticky, Dropdown } from 'semantic-ui-react'
 
 const SearchByName = (props) => {

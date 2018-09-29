@@ -26,16 +26,19 @@ class MainPage extends Component {
     )
   }
 
-  render() {
+  filterBy = (query) => {
+    this.setState({nameSearchQuery: query})
 
+  }
+
+  render() {
     return(
       <div>
-        <SearchBar handleNameSearch={this.handleNameSearch}/>
-        <br/>
+        <SearchBar handleNameSearch={this.handleNameSearch}
+          filterBy={this.filterBy}/>
         <CurrentUserThumbnail       user={this.props.app.currentUser}
           handleDoubleClick={this.handleDoubleClick}
         />
-        <br/>
         <NewMemberContainer
           users={this.props.app.users}
           handleDoubleClick={this.handleDoubleClick}/>
