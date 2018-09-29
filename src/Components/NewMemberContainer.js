@@ -15,7 +15,7 @@ class NewMemberContainer extends Component {
           secondary
         /> */}
 
-              The Two Most Recent Members Are:
+        The Two Most Recent Members Are:
               {this.props.users.slice(-2).map(user =>
                 <span key={user.id}>
                   <UserThumbnail user={user} />
