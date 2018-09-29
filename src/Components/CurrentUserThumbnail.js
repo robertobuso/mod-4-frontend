@@ -4,7 +4,8 @@ class CurrentUserThumbnail extends Component {
 
   render() {
     return(
-      <div>
+      <div onDoubleClick={()=>
+        this.props.handleDoubleClick(this.props.user.id)}>
         The Current User is:
         <br/>
         <br/>

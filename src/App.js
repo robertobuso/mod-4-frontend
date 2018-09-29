@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import WelcomePage from './Routes/WelcomePage'
+import SignUpForm from './Routes/SignUpForm'
 import MainPage from './Routes/MainPage'
 
 class App extends Component {
@@ -9,6 +11,7 @@ class App extends Component {
     super()
     this.state = {
       users: [],
+      usernameValue: "",
       currentUser: []
     }
   }
@@ -19,24 +22,53 @@ class App extends Component {
     .then(users => this.setState({users: users, currentUser: users[(users.length - 2)]}))
   }
 
+  handleOnChange = (e) => {
+    this.setState({usernameValue: e.target.value})
+  }
+
+  renderWelcomePage = () => {
+    return (
+      <WelcomePage users={this.state.users} handleOnChange={this.handleOnChange} />
+        )
+  }
+
+  renderSignUpForm = () => {
+    return (
+      <SignUpForm currentUser={this.state.usernameValue} />
+    )
+  }
+
+  findUsernameValue = () => {
+    return this.state.users.find( user => user.username === this.state.usernameValue )
+  }
+
+  renderPage = () => {
+    if (this.findUsernameValue === undefined){
+      return this.renderSignUpForm
+    }
+  }
+
   renderMainPage = () => {
     return (
       <MainPage
         app={this.state}
       />
-        )
+    )
   }
 
-
-
   render() {
+    console.log(this.state.usernameValue)
     return (
-            <div className="App">
-              <Router>
-                <Route path="/mainpage" render={this.renderMainPage}/>
-              </Router>
-            </div>
-    );
+      <div className="App">
+        <Router>
+          <Switch>
+            <Route path="/welcome" render={this.renderWelcomePage}/>
+            <Route path="/signup" render={this.renderPage}/>
+            <Route path="/mainpage" render={this.renderMainPage}/>
+          </Switch>
+        </Router>
+      </div>
+    )
   }
 }
 
