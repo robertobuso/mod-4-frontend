@@ -26,9 +26,8 @@ class MainPage extends Component {
     )
   }
 
-  filterBy = (query) => {
-    this.setState({nameSearchQuery: query})
-
+  filterBy = (event, data) => {
+ console.log(data.id)
   }
 
   render() {
