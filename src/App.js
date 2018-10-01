@@ -12,7 +12,7 @@ class App extends Component {
     this.state = {
       users: [],
       usernameValue: "",
-      currentUser: {}
+      currentUser: []
     }
   }
 
