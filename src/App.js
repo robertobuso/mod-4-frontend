@@ -39,8 +39,15 @@ class App extends Component {
 
   handleFormSubmit = (e, formState) => {
     e.preventDefault()
-    console.log(formState)
-    debugger
+    fetch('http://localhost:3000/api/v1/users', {
+      method: 'POST',
+      headers: {
+        "Content-Type": 'application/json'
+      },
+      body: JSON.stringify(formState)
+    })
+    .then(res => res.json())
+    .then(console.log)
   }
 
   renderWelcomePage = (props) => {

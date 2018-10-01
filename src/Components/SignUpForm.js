@@ -33,7 +33,7 @@ const SignUpForm = (props) => (
         <Form.Field name="hobby" value='music' label='Music' control='input' type='radio' />
         <Form.Field name="hobby" value='unity' label='Unity' control='input' type='radio' />
       </Form.Group>
-      <Form.Field name="description" label='Tell us a bit about yourself?' control='textarea' rows='3' />
+      <Form.Field onChange={props.handleOnChange} name="description" label='Tell us a bit about yourself?' control='textarea' rows='3' />
       <Form.Button content='Submit' />
     </Form>
   )
