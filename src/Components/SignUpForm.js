@@ -2,43 +2,41 @@ import React from 'react';
 import { Form } from 'semantic-ui-react'
 
 const SignUpForm = (props) => (
-    <Form>
+    <Form onSubmit={(event) => props.handleFormSubmit(event, props.formState)}>
       <Form.Group widths='equal'>
-        <Form.Field name="myName" label='Name' control='input' onChange={props.handleOnChange}/>
-        <Form.Field label='Username' control='input' value={props.currentUser}/>
+        <Form.Field name="name" label='Name' control='input' onChange={props.handleOnChange} value={props.name}/>
+        <Form.Field label='Username' control='input' placeholder={props.currentUser} onChange={props.handleOnChange}/>
       </Form.Group>
       <Form.Group grouped>
-        <Form.Field name="mod" label='Mod' control='select' widths='equal' >
-          <option value="" disabled selected>Choose your Mod</option>
-          <option value='mod 1'>Mod 1</option>
-          <option value='mod 2'>Mod 2</option>
-          <option value='mod 3'>Mod 3</option>
-          <option value='mod 4'>Mod 4</option>
-          <option value='mod 5'>Mod 5</option>
+        <Form.Field name="mod" label='Mod' control='select' widths='equal' onChange={props.handleOnChange}>
+          <option value="" disabled >Choose your Mod</option>
+          <option value='mod_1' onChange={props.handleOnChange}>Mod 1</option>
+          <option value='mod_2' onChange={props.handleOnChange}>Mod 2</option>
+          <option value='mod_3' onChange={props.handleOnChange}>Mod 3</option>
+          <option value='mod_4' onChange={props.handleOnChange}>Mod 4</option>
+          <option value='mod_5' onChange={props.handleOnChange}>Mod 5</option>
         </Form.Field>
       </Form.Group>
-      <Form.Group name="favoriteLanguage" grouped>
+      <Form.Group name="language" onChange={props.handleRadioOnChange} grouped >
         <label>Favorite Coding Language</label>
-        <Form.Field label='JavaScript' control='input' type='radio' name='htmlRadios' />
-        <Form.Field label='Ruby' control='input' type='radio' name='htmlRadios' />
-        <Form.Field label='Rails' control='input' type='radio' name='htmlRadios' />
-        <Form.Field label='Ruby' control='input' type='radio' name='htmlRadios' />
-        <Form.Field label='React' control='input' type='radio' name='htmlRadios' />
+        <Form.Field name='javascript' label='JavaScript' control='input' type='radio' onChange={props.handleRadioOnChange}  />
+        <Form.Field name='ruby' label='Ruby' control='input' type='radio' onChange={props.handleRadioOnChange} />
+        <Form.Field name='rails' label='Rails' control='input' type='radio' onChange={props.handleRadioOnChange}  />
+        <Form.Field name='python' label='Python' control='input' type='radio' onChange={props.handleRadioOnChange} />
+        <Form.Field name='assembly' label='Assembly' control='input' type='radio' onChange={props.handleRadioOnChange} />
       </Form.Group>
-      <Form.Group name="hobbies" grouped>
-      <label>Choose your hobbies</label>
-        <Form.Field label='Card Games' control='input' type='checkbox' />
-        <Form.Field label='Dancing' control='input' type='checkbox' />
-        <Form.Field label='Singing' control='input' type='checkbox' />
-        <Form.Field label='Coding' control='input' type='checkbox' />
-        <Form.Field label='Rock Climbing' control='input' type='checkbox' />
-        <Form.Field label='Board Games' control='input' type='checkbox' />
+      <Form.Group name="hobby" grouped>
+        <label>Choose your favorite hobby</label>
+        <Form.Field label='Card Games' control='input' type='radio' />
+        <Form.Field label='Dancing' control='input' type='radio' />
+        <Form.Field label='Singing' control='input' type='radio' />
+        <Form.Field label='Coding' control='input' type='radio' />
+        <Form.Field label='Rock Climbing' control='input' type='radio' />
+        <Form.Field label='Board Games' control='input' type='radio' />
       </Form.Group>
       <Form.Field name="description" label='Tell us a bit about yourself?' control='textarea' rows='3' />
-      <Form.Field control='button'>
-        Create Card
-      </Form.Field>
+      <Form.Button content='Submit' />
     </Form>
   )
-  
+
   export default SignUpForm
