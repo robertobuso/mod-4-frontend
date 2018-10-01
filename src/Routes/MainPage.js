@@ -7,14 +7,31 @@ import UserDetailsPage from '../Components/UserDetailsPage'
 
 class MainPage extends Component {
 
-  state = {nameSearchQuery: '', clickedUser: ''}
-
-  handleNameSearch = (event) => {
-    this.setState({nameSearchQuery: event.target.value}, () => this.filterByName())
+  constructor(props) {
+    super(props)
+    this.state = {nameSearchQuery: '', filterQuery: {}, clickedUser: ''}
   }
 
-  filterByName = () => {
-    return this.props.app.users.filter(user => user.name.toLowerCase().includes(this.state.nameSearchQuery.toLowerCase()))
+  handleNameSearch = (event) => {
+    this.setState({nameSearchQuery: event.target.value}, () => this.filterByType())
+  }
+
+  filterByType = () => {
+    const searchArray = [...this.props.app.users]
+
+    const firstKey = Object.keys(this.state.filterQuery)[0]
+
+    const firstValue = this.state.filterQuery[firstKey]
+
+    const nameQuery =       searchArray.filter(user => user.name.toLowerCase().includes(this.state.nameSearchQuery.toLowerCase()))
+
+    const otherQueries = nameQuery.filter(user => user[firstKey] === firstValue)
+
+    return Object.keys(this.state.filterQuery).length === 0 ? nameQuery : otherQueries
+  }
+
+  filterBy = (event, data) => {
+    this.setState({filterQuery: data.id}, () => this.filterByType())
   }
 
   handleDoubleClick= (id) => {
@@ -24,11 +41,6 @@ class MainPage extends Component {
         user={this.state}
       />
     )
-  }
-
-  filterBy = (query) => {
-    this.setState({nameSearchQuery: query})
-
   }
 
   render() {
@@ -43,7 +55,7 @@ class MainPage extends Component {
           users={this.props.app.users}
           handleDoubleClick={this.handleDoubleClick}/>
         <SearchResultsContainer
-          users={this.filterByName()}
+          users={this.filterByType()}
           handleDoubleClick={this.handleDoubleClick}/>
       </div>
     )

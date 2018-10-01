@@ -19,7 +19,7 @@ class App extends Component {
   componentDidMount() {
     fetch('http://localhost:3000/api/v1/users')
     .then(r => r.json())
-    .then(users => this.setState({users: users, currentUser: users[(users.length - 2)]}))
+    .then(users => this.setState({users: users, currentUser: users[(users.length - 3)]}))
   }
 
   handleOnChange = (e) => {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Grid, Segment, Header } from 'semantic-ui-react'
+import { Grid, Segment, Header, Image } from 'semantic-ui-react'
 
 class CurrentUserThumbnail extends Component {
 
@@ -12,7 +12,7 @@ class CurrentUserThumbnail extends Component {
         <Grid centered columns={1} relaxed>
           <Grid.Column floated='left' width={5} onDoubleClick={()=>
             this.props.handleDoubleClick(this.props.user.id)}>
-            <img src={this.props.user.img_url} height="50" width="50" alt='current user'/>
+            <Image src={this.props.user.img_url} height="50" width="50" alt='current user' circular/>
             {this.props.user.name}
           </Grid.Column>
         </Grid>
