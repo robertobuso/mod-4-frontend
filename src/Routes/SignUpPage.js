@@ -13,11 +13,13 @@ class SignUpPage extends Component {
       mod: "",
       language: "",
       hobby: "",
-      description: ""
+      description: "",
+      username: ""
     }
   }
 
   handleOnChange = (e) => {
+    
     this.setState({[e.target.name]: e.target.value})
   }
 

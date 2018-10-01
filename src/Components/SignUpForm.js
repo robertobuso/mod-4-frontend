@@ -5,11 +5,12 @@ const SignUpForm = (props) => (
     <Form onSubmit={(event) => props.handleFormSubmit(event, props.formState)}>
       <Form.Group widths='equal'>
         <Form.Field name="name" label='Name' control='input' onChange={props.handleOnChange} value={props.name}/>
-        <Form.Field label='Username' control='input' placeholder={props.currentUser} onChange={props.handleOnChange}/>
+
+        <Form.Field required name='username' label='Username' control='input' placeholder={props.currentUser} onChange={props.handleOnChange}/>
       </Form.Group>
       <Form.Group grouped>
-        <Form.Field name="mod" label='Mod' control='select' widths='equal' onChange={props.handleOnChange}>
-          <option value="" disabled >Choose your Mod</option>
+        <Form.Field required name="mod" label='Mod' control='select' widths='equal' onChange={props.handleOnChange}>
+          <option value="" >Choose your Mod</option>
           <option value='mod_1'>Mod 1</option>
           <option value='mod_2'>Mod 2</option>
           <option value='mod_3'>Mod 3</option>

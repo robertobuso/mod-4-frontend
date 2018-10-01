@@ -11,13 +11,12 @@ const UserCard = (props) => (
     <Card.Content>
       <Card.Header> {props.currentUser.name}</Card.Header>
 
-      <Card.Description> {props.currentUser.description}</Card.Description>
       <Card.Content extra align="center">
         <a>
           Mod: {(props.currentUser.mod).charAt(0).toUpperCase() + (props.currentUser.mod).substr(1)}
         </a>
       </Card.Content>
-        <br/>
+      <br/>
       <Card.Content extra align="center">
         <a>
           Favorite Language: {(props.currentUser.language).charAt(0).toUpperCase() + (props.currentUser.language).substr(1)}
@@ -31,6 +30,10 @@ const UserCard = (props) => (
         </a>
 
       </Card.Content>
+      <br/>
+      <Card.Description>
+        {props.currentUser.description}
+      </Card.Description>
     </Card.Content>
   </Card>
 )
