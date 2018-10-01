@@ -40,6 +40,7 @@ class App extends Component {
   handleFormSubmit = (e, formState) => {
     e.preventDefault()
     console.log(formState)
+    debugger
   }
 
   renderWelcomePage = (props) => {
