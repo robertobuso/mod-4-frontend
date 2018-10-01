@@ -34,7 +34,7 @@ class SignUpPage extends Component {
         </Grid.Column>
         <Grid.Column>
           <Segment>
-            <UserCard currentUser={this.props.currentUser} name={this.state.myName}/>
+            <UserCard currentUser={this.props.currentUser} name={this.state.myName} mod={this.state.mod}/>
           </Segment>
         </Grid.Column>
       </Grid>
