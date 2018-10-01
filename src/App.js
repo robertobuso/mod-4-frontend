@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import WelcomePage from './Routes/WelcomePage'
-import SignUpForm from './Routes/SignUpForm'
 import MainPage from './Routes/MainPage'
+import SignUpPage from './Routes/SignUpPage'
 
 class App extends Component {
 
@@ -32,9 +32,9 @@ class App extends Component {
         )
   }
 
-  renderSignUpForm = () => {
+  renderSignUpPage = () => {
     return (
-      <SignUpForm currentUser={this.state.usernameValue} />
+      <SignUpPage currentUser={this.state.usernameValue} />
     )
   }
 
@@ -44,7 +44,7 @@ class App extends Component {
 
   renderPage = () => {
     if (this.findUsernameValue === undefined){
-      return this.renderSignUpForm
+      return this.renderSignUpPage
     }
   }
 
@@ -62,8 +62,8 @@ class App extends Component {
         <Router>
           <Switch>
             <Route path="/welcome" render={this.renderWelcomePage}/>
-            <Route path="/signup" render={this.renderPage}/>
             <Route path="/mainpage" render={this.renderMainPage}/>
+            <Route path="/signup" render={this.renderSignUpPage}/>
           </Switch>
         </Router>
       </div>
