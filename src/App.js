@@ -23,7 +23,7 @@ class App extends Component {
   }
 
   handleOnChange = (e) => {
-    this.setState({usernameValue: e.target.value})
+    this.setState({usernameValue: e.target.value}, () => console.log(this.state.usernameValue))
   }
 
   handleOnSubmit = (e) => {
