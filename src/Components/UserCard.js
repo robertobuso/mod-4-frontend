@@ -1,23 +1,38 @@
 import React, { Component } from 'react';
-import { Card, Icon } from 'semantic-ui-react'
+import { Card, Icon, Image } from 'semantic-ui-react'
 
 
-
-const extra = (
-  <a>
-    <Icon name='user' />
-    16 Friends
-  </a>
-)
 
 const UserCard = (props) => (
-  <Card
-    image=''
-    header= {props.name}
-    meta='Friend'
-    description='Elliot is a sound engineer living in Nashville who enjoys playing guitar and hanging with his cat.'
-    extra={extra}
-  />
+  <Card centered>
+    <Image
+      src='https://i2-prod.dailyrecord.co.uk/incoming/article6740022.ece/ALTERNATES/s615/JS75502096.jpg'
+    size='large'  />
+    <Card.Content>
+      <Card.Header> {props.currentUser.name}</Card.Header>
+
+      <Card.Description> {props.currentUser.description}</Card.Description>
+      <Card.Content extra align="center">
+        <a>
+          Mod: {(props.currentUser.mod).charAt(0).toUpperCase() + (props.currentUser.mod).substr(1)}
+        </a>
+      </Card.Content>
+        <br/>
+      <Card.Content extra align="center">
+        <a>
+          Favorite Language: {(props.currentUser.language).charAt(0).toUpperCase() + (props.currentUser.language).substr(1)}
+        </a>
+      </Card.Content>
+      <br/>
+      <Card.Content extra align="center">
+
+        <a>
+          Hobby: {(props.currentUser.hobby).charAt(0).toUpperCase() + (props.currentUser.hobby).substr(1)}
+        </a>
+
+      </Card.Content>
+    </Card.Content>
+  </Card>
 )
 
 export default UserCard
