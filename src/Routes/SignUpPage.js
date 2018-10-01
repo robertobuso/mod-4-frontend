@@ -18,13 +18,8 @@ class SignUpPage extends Component {
   }
 
   handleOnChange = (e) => {
-    this.setState({[e.target.name]: e.target.value}, ()=>console.log(this.state.name))
+    this.setState({[e.target.name]: e.target.value})
   }
-
-  // handleRadioOnChange = (e) => {
-  //   debugger
-  //   this.setState({[e.target.parentElement.parentElement.parentElement.__reactEventHandlers$2cr5h150osx.name]: e.target.name}, ()=>console.log(this.state.name))
-  // }
 
   render() {
     return (

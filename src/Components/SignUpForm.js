@@ -27,13 +27,13 @@ const SignUpForm = (props) => (
       </Form.Group>
       <Form.Group name="hobby" onChange={props.handleOnChange} grouped>
         <label>Choose your favorite hobby</label>
-        <Form.Field name='balloons' label='Balloons' control='input' type='radio' />
-        <Form.Field name='chess' label='Chess' control='input' type='radio' />
-        <Form.Field name='darts' label='Darts' control='input' type='radio' />
-        <Form.Field name='music' label='Music' control='input' type='radio' />
-        <Form.Field name='unity' label='Unity' control='input' type='radio' />
+        <Form.Field name='hobby' label='Balloons' value ='balloons' control='input' type='radio' />
+        <Form.Field name='hobby' label='Chess' value='chess' control='input' type='radio' />
+        <Form.Field name='hobby' label='Darts' value='darts' control='input' type='radio' />
+        <Form.Field name='hobby' label='Music' value='music' control='input' type='radio' />
+        <Form.Field name='hobby' label='Unity' value='unity' control='input' type='radio' />
       </Form.Group>
-      <Form.Field name="description" label='Tell us a bit about yourself?' control='textarea' rows='3' />
+      <Form.Field name="description" onChange={props.handleOnChange} label='Tell us a bit about yourself?' control='textarea' rows='3' />
       <Form.Button content='Submit' />
     </Form>
   )
