@@ -23,7 +23,7 @@ class MainPage extends Component {
 
     const firstValue = this.state.filterQuery[firstKey]
 
-    const nameQuery =       searchArray.filter(user => user.name.toLowerCase().includes(this.state.nameSearchQuery.toLowerCase()))
+    const nameQuery =  searchArray.filter(user => user.name.toLowerCase().includes(this.state.nameSearchQuery.toLowerCase()))
 
     const otherQueries = nameQuery.filter(user => user[firstKey] === firstValue)
 
@@ -44,7 +44,9 @@ class MainPage extends Component {
   }
 
   render() {
+
     return(
+
       <div>
         <SearchBar handleNameSearch={this.handleNameSearch}
           filterBy={this.filterBy}/>

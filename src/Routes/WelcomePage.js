@@ -1,12 +1,15 @@
 import React, { Component } from 'react'
 import WelcomeForm from '../Components/WelcomeForm'
 
-//What is this.props.render?
 class WelcomePage extends Component {
   render () {
+    // this.props.history.push('/mainpage')
+
     return (
       <div>
-        <WelcomeForm users={this.props.render} handleOnChange={this.props.handleOnChange}/>
+        <WelcomeForm users={this.props.render} handleOnSubmit={this.props.handleOnSubmit}
+          handleOnChange={this.props.handleOnChange}
+        />
       </div>
     )
   }
