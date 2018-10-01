@@ -12,13 +12,13 @@ class App extends Component {
     this.state = {
       users: [],
       usernameValue: "",
-      currentUser: []
+      currentUser: {}
     }
   }
 
   componentDidMount() {
     fetch('http://localhost:3000/api/v1/users')
-    .then(r => r.json())
+    .then(res => res.json())
     .then(users => this.setState({users: users}))
   }
 
@@ -83,7 +83,7 @@ class App extends Component {
           <Route path="/welcome" render={this.renderWelcomePage}
           />
           <Route path="/signup" render={this.renderPage}/>
-          <Route path='/signup' render={this.renderPage}/>
+          {/* <Route path='/signup' render={this.renderPage}/> */}
           <Route path="/mainpage" render={this.renderMainPage}/>
         </Switch>
       </div>

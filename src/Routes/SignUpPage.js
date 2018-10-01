@@ -27,6 +27,7 @@ class SignUpPage extends Component {
   // }
 
   render() {
+    console.log(this.state)
     return (
       <Grid stackable columns={2}>
         <Grid.Column>
