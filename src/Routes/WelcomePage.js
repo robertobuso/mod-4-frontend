@@ -1,5 +1,6 @@
 import React from 'react'
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
+import {NavLink} from 'react-router-dom'
 
 // class WelcomePage extends Component {
 //   import React from 'react'
@@ -25,7 +26,7 @@ import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui
           </Header>
           <Form size='large' onSubmit={props.handleOnSubmit}>
             <Segment stacked>
-              <Form.Input fluid icon='user' iconPosition='left' placeholder='E-mail address' onChange={props.handleOnChange} />
+              <Form.Input fluid icon='user' iconPosition='left' placeholder='username' onChange={props.handleOnChange} />
               <Form.Input
                 fluid
                 icon='lock'
@@ -40,7 +41,7 @@ import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui
             </Segment>
           </Form>
           <Message>
-            New to us? <a href='#'>Sign Up</a>
+            New to us? <NavLink to='/signup'>Sign Up</NavLink>
           </Message>
         </Grid.Column>
       </Grid>
