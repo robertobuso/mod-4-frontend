@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Route, Switch, Redirect, NavLink} from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import WelcomePage from './Routes/WelcomePage'
 import MainPage from './Routes/MainPage'
 import SignUpPage from './Routes/SignUpPage'
@@ -37,6 +37,11 @@ class App extends Component {
     } else {this.setState({currentUser: currentUser}, () => this.props.history.push('/mainpage'))}
   }
 
+  handleFormSubmit = (e, formState) => {
+    e.preventDefault()
+    console.log(formState)
+  }
+
   renderWelcomePage = (props) => {
     return (
       <WelcomePage {...props}
@@ -48,7 +53,9 @@ class App extends Component {
 
   renderSignUpPage = () => {
     return (
-      <SignUpPage currentUser={this.state.usernameValue} />
+      <SignUpPage
+        currentUser={this.state.usernameValue}
+        handleFormSubmit={this.handleFormSubmit} />
     )
   }
 
@@ -75,15 +82,9 @@ class App extends Component {
           <Route path="/welcome" render={this.renderWelcomePage}
           />
           <Route path="/signup" render={this.renderPage}/>
-
-
           <Route path='/signup' render={this.renderPage}/>
-
           <Route path="/mainpage" render={this.renderMainPage}/>
-
         </Switch>
-
-
       </div>
     )
   }

@@ -9,27 +9,31 @@ class SignUpPage extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      myName: "",
+      name: "",
       mod: "",
-      favoriteLanguage: "",
-      hobbies: [],
+      language: "",
+      hobby: "",
       description: ""
     }
   }
 
   handleOnChange = (e) => {
-    this.setState({[e.target.name]: e.target.value})
-    // console.log(e.target.value);
+    this.setState({[e.target.name]: e.target.value}, ()=>console.log(this.state.name))
   }
 
-
+  handleRadioOnChange = (e) => {
+    debugger
+    this.setState({[e.target.parentElement.parentElement.parentElement.__reactEventHandlers$2cr5h150osx.name]: e.target.name}, ()=>console.log(this.state.name))
+  }
 
   render() {
     return (
       <Grid stackable columns={2}>
         <Grid.Column>
           <Segment>
-            <SignUpForm currentUser={this.props.currentUser} handleOnChange={this.handleOnChange}/>
+            <SignUpForm currentUser={this.props.currentUser} handleOnChange={this.handleOnChange}  handleFormSubmit={this.props.handleFormSubmit}
+              formState={this.state}
+              handleRadioOnChange={this.handleRadioOnChange}/>
           </Segment>
         </Grid.Column>
         <Grid.Column>
