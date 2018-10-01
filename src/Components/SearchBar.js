@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Grid, Segment, Input, Sticky, Dropdown } from 'semantic-ui-react'
+import { Grid, Segment, Sticky } from 'semantic-ui-react'
 import SearchByName from '../Components/SearchByName'
 import SearchByHobby from '../Components/SearchByHobby'
 import SearchByMod from '../Components/SearchByMod'
@@ -7,15 +7,18 @@ import SearchByLanguage from '../Components/SearchByLanguage'
 
 class SearchBar extends Component {
   render() {
+
     return(
       <Segment>
         <Sticky>
           <Grid centered columns={5} relaxed>
             <Grid.Column>
-              <SearchByHobby />
+              <SearchByHobby
+                filterBy={this.props.filterBy}/>
             </Grid.Column>
             <Grid.Column>
-              <SearchByMod />
+              <SearchByMod
+                filterBy={this.props.filterBy}/>
             </Grid.Column>
             <Grid.Column>
               <SearchByLanguage filterBy={this.props.filterBy}/>

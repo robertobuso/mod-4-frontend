@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import { Route, Switch, Redirect, NavLink} from 'react-router-dom'
 import WelcomePage from './Routes/WelcomePage'
 import MainPage from './Routes/MainPage'
 import SignUpPage from './Routes/SignUpPage'
@@ -19,16 +19,30 @@ class App extends Component {
   componentDidMount() {
     fetch('http://localhost:3000/api/v1/users')
     .then(r => r.json())
-    .then(users => this.setState({users: users, currentUser: users[(users.length - 2)]}))
+    .then(users => this.setState({users: users}))
   }
 
   handleOnChange = (e) => {
     this.setState({usernameValue: e.target.value})
   }
 
-  renderWelcomePage = () => {
+  handleOnSubmit = (e) => {
+    e.preventDefault()
+    e.target.reset()
+
+    const currentUser =  this.state.users.find( user => user.username === this.state.usernameValue )
+
+    if (currentUser === undefined) {
+      this.props.history.push('/signup')
+    } else {this.setState({currentUser: currentUser}, () => this.props.history.push('/mainpage'))}
+  }
+
+  renderWelcomePage = (props) => {
     return (
-      <WelcomePage users={this.state.users} handleOnChange={this.handleOnChange} />
+      <WelcomePage {...props}
+        users={this.state.users}
+        handleOnChange={this.handleOnChange}
+        handleOnSubmit={this.handleOnSubmit}/>
         )
   }
 
@@ -38,20 +52,17 @@ class App extends Component {
     )
   }
 
-  findUsernameValue = () => {
-    return this.state.users.find( user => user.username === this.state.usernameValue )
-  }
-
   renderPage = () => {
-    if (this.findUsernameValue === undefined){
-      return this.renderSignUpPage
-    }
+    if (this.state.currentUser.length < 1 ){
+      return this.renderSignUpPage()
+    } else return this.renderMainPage()
   }
 
   renderMainPage = () => {
     return (
       <MainPage
         app={this.state}
+        currentUser={this.state.currentUser}
       />
     )
   }
@@ -59,13 +70,20 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Router>
-          <Switch>
-            <Route path="/welcome" render={this.renderWelcomePage}/>
-            <Route path="/mainpage" render={this.renderMainPage}/>
-            <Route path="/signup" render={this.renderSignUpPage}/>
-          </Switch>
-        </Router>
+
+        <Switch>
+          <Route path="/welcome" render={this.renderWelcomePage}
+          />
+          <Route path="/signup" render={this.renderPage}/>
+
+
+          <Route path='/signup' render={this.renderPage}/>
+
+          <Route path="/mainpage" render={this.renderMainPage}/>
+
+        </Switch>
+
+
       </div>
     )
   }
