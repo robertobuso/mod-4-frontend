@@ -4,12 +4,12 @@ import { Dropdown } from 'semantic-ui-react'
 const SearchByHobby = (props) => {
 
   const subjects = [
-    {text: "Balloons", id: "balloons"},
-    {text: "Chess", id: "chess"},
-    {text: "Darts", id: "darts"},
-    {text: "Games", id: "games"},
-    {text: "Music", id: "music"},
-    {text: "Unity", id: "unity"}
+    {text: "Balloons", id: {hobby: "ballons"}},
+    {text: "Chess", id: {hobby: "chess"}},
+    {text: "Darts", id: {hobby: "darts"}},
+    {text: "Games", id: {hobby: "games"}},
+    {text: "Music", id: {hobby: "music"}},
+    {text: "Unity", id: {hobby: "unity"}}
   ]
 
   return(
@@ -26,7 +26,7 @@ const SearchByHobby = (props) => {
           <Dropdown.Item text={item.text}
             id={item.id}
             onClick={props.filterBy}
-            key={item.id}
+            key={item.id["hobby"]}
           />
         )}
       </Dropdown.Menu>

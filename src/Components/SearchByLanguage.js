@@ -4,18 +4,16 @@ import { Dropdown } from 'semantic-ui-react'
 const SearchByLanguage = (props) => {
 
   const subjects = [
-    {text: "Ruby", id: "ruby"},
-    {text: "Javascript", id: "javascript"},
-    {text: "Python", id: "python"},
-    {text: "Logo", id: "logo"},
-    {text: "Assembly", id: "assembly"},
-    {text: "Spanish", id: "spanish"}
+    {text: "Ruby", id: {language: "ruby"}},
+    {text: "Javascript", id: {language: "javascript"}},
+    {text: "Python", id: {language: "python"}},
+    {text: "Logo", id: {language: "logo"}},
+    {text: "Assembly", id: {language: "assembly"}},
+    {text: "Spanish", id: {language: "spanish"}}
   ]
 
   return(
     <Dropdown
-      placeholder='Languages'
-      name="subject"
       text="Languages"
       icon="beer"
       floating
@@ -28,7 +26,7 @@ const SearchByLanguage = (props) => {
           <Dropdown.Item text={item.text}
             id={item.id}
             onClick={props.filterBy}
-            key={item.id}
+            key={item.id['language']}
           />
         )}
       </Dropdown.Menu>
