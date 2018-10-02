@@ -48,7 +48,6 @@ class App extends Component {
         }))
         .then(users => this.setState({ currentUser: this.state.users.find( user => user.username === this.state.username )
         }))
-      .then(user => console.log(this.state))
       .then(user => this.props.history.push('/mainpage'))
       :
       r.json()
@@ -66,8 +65,12 @@ class App extends Component {
       body: JSON.stringify(formState)
     })
     .then(r => r.json())
-    .then(user => this.setState({currentUser: user}))
-    .then(user => this.props.history.push('/mainpage'))
+    .then(users => {
+      // console.log(users)
+      const cUser = users.find(user => user.username === formState.username)
+      // console.log(cUser, formState.username)
+      this.setState({users: users, currentUser: cUser}, () => this.props.history.push('/mainpage'))
+    })
   }
 
   renderWelcomePage = (props) => {
@@ -95,6 +98,7 @@ class App extends Component {
   // }
 
   renderMainPage = () => {
+     
     return (
       <MainPage
         app={this.state}

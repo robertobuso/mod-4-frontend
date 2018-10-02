@@ -43,7 +43,6 @@ class MainPage extends Component {
   }
 
   render() {
-    debugger
     return(
       <div>
         <SearchBar handleNameSearch={this.handleNameSearch}
