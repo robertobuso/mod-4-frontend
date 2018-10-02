@@ -1,6 +1,7 @@
 import React from 'react';
 import { Form } from 'semantic-ui-react'
 
+
 const SignUpForm = (props) => (
     <Form onSubmit={(event) => props.handleFormSubmit(event, props.formState)}>
       <Form.Group widths='equal'>
@@ -30,13 +31,19 @@ const SignUpForm = (props) => (
       </Form.Group>
       <Form.Group name="hobby" onChange={props.handleOnChange} grouped>
         <label>Choose your favorite hobby</label>
-        <Form.Field name='hobby' label='Balloons' value ='balloons' control='input' type='radio' />
-        <Form.Field name='hobby' label='Chess' value='chess' control='input' type='radio' />
-        <Form.Field name='hobby' label='Darts' value='darts' control='input' type='radio' />
-        <Form.Field name='hobby' label='Music' value='music' control='input' type='radio' />
-        <Form.Field name='hobby' label='Unity' value='unity' control='input' type='radio' />
+        <Form.Field name="hobby" value='balloons' label='Balloons' control='input' type='radio' />
+        <Form.Field name="hobby" value='chess' label='Chess' control='input' type='radio' />
+        <Form.Field name="hobby" value='darts' label='Darts' control='input' type='radio' />
+        <Form.Field name="hobby" value='music' label='Music' control='input' type='radio' />
+        <Form.Field name="hobby" value='unity' label='Unity' control='input' type='radio' />
       </Form.Group>
-      <Form.Field name="description" onChange={props.handleOnChange} label='Tell us a bit about yourself?' control='textarea' rows='3' />
+      <Form.Group>
+        <div className="upload">
+          <button onClick={props.handleUploadWidget} className="upload-button">
+            Add Image
+          </button>
+        </div>
+      </Form.Group>
       <Form.Button content='Submit' />
     </Form>
   )
