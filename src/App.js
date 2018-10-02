@@ -40,7 +40,7 @@ class App extends Component {
 
   handleFormSubmit = (e, formState) => {
     e.preventDefault()
-
+    debugger
     fetch('http://localhost:3000/api/v1/users', {
       method: 'POST',
       headers: {
@@ -49,8 +49,9 @@ class App extends Component {
       body: JSON.stringify(formState)
     })
     .then(r => r.json())
+    .then(res => console.log(res))
     .then(user => this.setState({currentUser: user}))
-    .then(user => this.props.history.push('/signup'))
+    .then(user => this.props.history.push('/mainpage'))
   }
 
   renderWelcomePage = (props) => {

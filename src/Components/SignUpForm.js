@@ -41,6 +41,7 @@ const SignUpForm = (props) => (
           </button>
         </div>
       </Form.Group>
+      <Form.Button content='Submit' />
     </Form>
   )
 

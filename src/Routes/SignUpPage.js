@@ -16,22 +16,23 @@ class SignUpPage extends Component {
       language: "",
       hobby: "",
       description: "",
-      image: "",
+      img_url: "",
       username: ""
     }
   }
   
   componentDidMount() {
     axios.get('https://res.cloudinary.com/dav4yqqvv/image/upload/accesslabs.json')
-      .then(res => this.setState({image: res.data.url }))
+      .then(res => this.setState({img_url: res.data.url }))
   }
 
-  handleUploadWidget = () => {
+  handleUploadWidget = (e) => {
+    e.preventDefault()
     let _this = this;
     window.cloudinary.openUploadWidget({ cloud_name: 'dav4yqqvv', upload_preset: 'ggwk24kr', tags:['accesslabs']},
         function(error, result) {
             console.log(result);
-            _this.setState({image: result[0].url})
+            _this.setState({img_url: result[0].url})
         });
 }
 
@@ -53,7 +54,7 @@ class SignUpPage extends Component {
         </Grid.Column>
         <Grid.Column>
           <Segment>
-            <UserCard image={this.state.image} currentUser={this.props.currentUser} name={this.state.myName} mod={this.state.mod}/>
+            <UserCard img_url={this.state.img_url} currentUser={this.state} name={this.state.myName} mod={this.state.mod}/>
           </Segment>
         </Grid.Column>
       </Grid>
