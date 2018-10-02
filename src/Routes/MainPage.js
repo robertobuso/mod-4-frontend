@@ -47,7 +47,7 @@ class MainPage extends Component {
       <div>
         <SearchBar handleNameSearch={this.handleNameSearch}
           filterBy={this.filterBy}/>
-        <CurrentUserThumbnail       user={this.props.app.currentUser}
+        <CurrentUserThumbnail       user={this.props.currentUser}
           handleDoubleClick={this.handleDoubleClick}
         />
         <EmailGroup

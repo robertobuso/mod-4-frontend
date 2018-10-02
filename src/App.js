@@ -48,7 +48,6 @@ class App extends Component {
         }))
         .then(users => this.setState({ currentUser: this.state.users.find( user => user.username === this.state.username )
         }))
-      .then(user => console.log(this.state))
       .then(user => this.props.history.push('/mainpage'))
       :
       r.json()
@@ -57,9 +56,7 @@ class App extends Component {
   }
 
   handleFormSubmit = (e, formState) => {
-    debugger
     e.preventDefault()
-
     fetch('http://localhost:3000/api/v1/users', {
       method: 'POST',
       headers: {
@@ -68,8 +65,12 @@ class App extends Component {
       body: JSON.stringify(formState)
     })
     .then(r => r.json())
-    .then(user => this.setState({currentUser: user}))
-    .then(user => this.props.history.push('/signup'))
+    .then(users => {
+      // console.log(users)
+      const cUser = users.find(user => user.username === formState.username)
+      // console.log(cUser, formState.username)
+      this.setState({users: users, currentUser: cUser}, () => this.props.history.push('/mainpage'))
+    })
   }
 
   renderWelcomePage = (props) => {
@@ -90,13 +91,14 @@ class App extends Component {
     )
   }
 
-  renderPage = () => {
-    if (this.state.currentUser.length < 1 ){
-      return this.renderSignUpPage()
-    } else return this.renderMainPage()
-  }
+  // renderPage = () => {
+  //   if (this.state.currentUser === undefined ){
+  //     return this.renderSignUpPage()
+  //   } else return this.renderMainPage()
+  // }
 
   renderMainPage = () => {
+     
     return (
       <MainPage
         app={this.state}
@@ -108,11 +110,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-
         <Switch>
           <Route path="/welcome" render={this.renderWelcomePage}
           />
-          <Route path="/signup" render={this.renderPage}/>
+          <Route path="/signup" render={this.renderSignUpPage}/>
           <Route path="/mainpage" render={this.renderMainPage}/>
         </Switch>
       </div>
