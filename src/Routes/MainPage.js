@@ -53,12 +53,13 @@ class MainPage extends Component {
         <CurrentUserThumbnail       user={this.props.app.currentUser}
           handleDoubleClick={this.handleDoubleClick}
         />
-        <NewMemberContainer
-          users={this.props.app.users}
-          handleDoubleClick={this.handleDoubleClick}/>
         <SearchResultsContainer
           users={this.filterByType()}
           handleDoubleClick={this.handleDoubleClick}/>
+        <NewMemberContainer
+          users={this.props.app.users}
+          handleDoubleClick={this.handleDoubleClick}/>
+
       </div>
     )
   }

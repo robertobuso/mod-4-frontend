@@ -33,6 +33,7 @@ import {NavLink} from 'react-router-dom'
                 iconPosition='left'
                 placeholder='Password'
                 type='password'
+                onChange={props.handlePassword}
               />
 
               <Button color='teal' fluid size='large'>

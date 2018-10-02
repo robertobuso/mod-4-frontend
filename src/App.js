@@ -11,31 +11,56 @@ class App extends Component {
     super()
     this.state = {
       users: [],
-      usernameValue: "",
+      username: "",
+      password:"",
       currentUser: []
     }
   }
 
-  componentDidMount() {
-    fetch('http://localhost:3000/api/v1/users')
-    .then(r => r.json())
-    .then(users => this.setState({users: users}))
-  }
+  // componentDidMount() {
+  //   fetch('http://localhost:3000/api/v1/users')
+  //   .then(r => r.json())
+  //   .then(users => this.setState({users: users}))
+  // }
 
   handleOnChange = (e) => {
-    this.setState({usernameValue: e.target.value}, () => console.log(this.state.usernameValue))
+    this.setState({username: e.target.value})
+  }
+
+  handlePassword = (e) => {
+    this.setState({password: e.target.value})
   }
 
   handleOnSubmit = (e) => {
     e.preventDefault()
     e.target.reset()
 
-    const currentUser =  this.state.users.find( user => user.username === this.state.usernameValue )
+    const data = {
+      username: this.state.username,
+      password: this.state.password
+    }
 
-    if (currentUser === undefined) {
+    fetch('http://localhost:3000/api/v1/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+    .then(r => r.json())
+    .then(users => this.setState(
+      {users: users
+      }))
+      .then(users => this.setState({ currentUser: this.state.users.find( user => user.username === this.state.username )
+      }))
+    .then(user => console.log(this.state))
+    .then(user => this.props.history.push('/mainpage'))
 
-      this.props.history.push('/signup')
-    } else {this.setState({currentUser: currentUser}, () => this.props.history.push('/mainpage'))}
+
+    // if (currentUser === undefined) {
+    //
+    //   this.props.history.push('/signup')
+    // } else {this.setState({currentUser: currentUser}, () => this.props.history.push('/mainpage'))}
   }
 
   handleFormSubmit = (e, formState) => {
@@ -58,14 +83,15 @@ class App extends Component {
       <WelcomePage {...props}
         users={this.state.users}
         handleOnChange={this.handleOnChange}
-        handleOnSubmit={this.handleOnSubmit}/>
+        handleOnSubmit={this.handleOnSubmit}
+        handlePassword={this.handlePassword}/>
         )
   }
 
   renderSignUpPage = () => {
     return (
       <SignUpPage
-        currentUser={this.state.usernameValue}
+        currentUser={this.state.username}
         handleFormSubmit={this.handleFormSubmit} />
     )
   }
