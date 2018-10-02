@@ -9,7 +9,7 @@ const SignUpForm = (props) => (
         <Form.Field required name='username' label='Username' control='input' placeholder={props.currentUser} onChange={props.handleOnChange}/>
 
         <Form.Field required name='password' label='Password' control='input' type='password' placeholder={props.currentUser} onChange={props.handleOnChange}/>
-    </Form.Group>
+      </Form.Group>
       <Form.Group grouped>
         <Form.Field required name="mod" label='Mod' control='select' widths='equal' onChange={props.handleOnChange}>
           <option value="" >Choose your Mod</option>
