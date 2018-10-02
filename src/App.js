@@ -23,7 +23,7 @@ class App extends Component {
   }
 
   handleOnChange = (e) => {
-    this.setState({usernameValue: e.target.value})
+    this.setState({usernameValue: e.target.value}, () => console.log(this.state.usernameValue))
   }
 
   handleOnSubmit = (e) => {
@@ -33,21 +33,24 @@ class App extends Component {
     const currentUser =  this.state.users.find( user => user.username === this.state.usernameValue )
 
     if (currentUser === undefined) {
+
       this.props.history.push('/signup')
     } else {this.setState({currentUser: currentUser}, () => this.props.history.push('/mainpage'))}
   }
 
   handleFormSubmit = (e, formState) => {
     e.preventDefault()
+
     fetch('http://localhost:3000/api/v1/users', {
       method: 'POST',
       headers: {
-        "Content-Type": 'application/json'
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify(formState)
     })
-    .then(res => res.json())
-    .then(console.log)
+    .then(r => r.json())
+    .then(user => this.setState({currentUser: user}))
+    .then(user => this.props.history.push('/signup'))
   }
 
   renderWelcomePage = (props) => {
@@ -89,7 +92,6 @@ class App extends Component {
           <Route path="/welcome" render={this.renderWelcomePage}
           />
           <Route path="/signup" render={this.renderPage}/>
-          {/* <Route path='/signup' render={this.renderPage}/> */}
           <Route path="/mainpage" render={this.renderMainPage}/>
         </Switch>
       </div>

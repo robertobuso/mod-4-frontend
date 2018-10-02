@@ -16,7 +16,8 @@ class SignUpPage extends Component {
       language: "",
       hobby: "",
       description: "",
-      image: ""
+      image: "",
+      username: ""
     }
   }
   
@@ -37,7 +38,6 @@ class SignUpPage extends Component {
   handleOnChange = (e) => {
     this.setState({[e.target.name]: e.target.value})
   }
-
 
   render() {
     console.log(this.state)
