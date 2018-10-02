@@ -11,13 +11,13 @@ class UserThumbnail extends Component {
             <Image src={this.props.user.img_url} height="50" width="50" alt='current user' circular/>
             {this.props.user.name}
           </Button>}
-          content='This would be the Users Card with User Details'
+          content={this.props.user.hobby}
           style={{borderRadius: 0,
             opacity: 0.7,
           padding: '2em'}}
           inverted
         />
-
+        
         </div>
 
         )}

@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
-import { Card, Icon, Image } from 'semantic-ui-react'
-import { CloudinaryContext } from 'cloudinary-react';
+import React from 'react';
+import { Card, Image } from 'semantic-ui-react'
 
 const UserCard = (props) => (
     <Card>
