@@ -17,12 +17,6 @@ class App extends Component {
     }
   }
 
-  // componentDidMount() {
-  //   fetch('http://localhost:3000/api/v1/users')
-  //   .then(r => r.json())
-  //   .then(users => this.setState({users: users}))
-  // }
-
   handleOnChange = (e) => {
     this.setState({username: e.target.value})
   }
@@ -47,23 +41,23 @@ class App extends Component {
       },
       body: JSON.stringify(data)
     })
-    .then(r => r.json())
-    .then(users => this.setState(
-      {users: users
-      }))
-      .then(users => this.setState({ currentUser: this.state.users.find( user => user.username === this.state.username )
-      }))
-    .then(user => console.log(this.state))
-    .then(user => this.props.history.push('/mainpage'))
-
-
-    // if (currentUser === undefined) {
-    //
-    //   this.props.history.push('/signup')
-    // } else {this.setState({currentUser: currentUser}, () => this.props.history.push('/mainpage'))}
+    .then(r => r.ok ?
+      r.json()
+      .then( r => this.setState(
+        {users: r
+        }))
+        .then(users => this.setState({ currentUser: this.state.users.find( user => user.username === this.state.username )
+        }))
+      .then(user => console.log(this.state))
+      .then(user => this.props.history.push('/mainpage'))
+      :
+      r.json()
+      .then(r => alert(r.errors))
+    )
   }
 
   handleFormSubmit = (e, formState) => {
+    debugger
     e.preventDefault()
 
     fetch('http://localhost:3000/api/v1/users', {

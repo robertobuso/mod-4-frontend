@@ -4,6 +4,9 @@ import NewMemberContainer from '../Components/NewMemberContainer'
 import SearchBar from '../Components/SearchBar'
 import SearchResultsContainer from '../Components/SearchResultsContainer'
 import UserDetailsPage from '../Components/UserDetailsPage'
+import { Popup } from 'semantic-ui-react'
+import UserCard from '../Components/UserCard'
+import EmailGroup from '../Components/EmailGroup'
 
 class MainPage extends Component {
 
@@ -35,24 +38,20 @@ class MainPage extends Component {
   }
 
   handleDoubleClick= (id) => {
-    console.log(id)
-    return (
-      <UserDetailsPage
-        user={this.state}
-      />
-    )
+    console.log("This thumbnail belongs to id number ", id)
+    return "Hi"
   }
 
   render() {
-
     return(
-
       <div>
         <SearchBar handleNameSearch={this.handleNameSearch}
           filterBy={this.filterBy}/>
         <CurrentUserThumbnail       user={this.props.app.currentUser}
           handleDoubleClick={this.handleDoubleClick}
         />
+        <EmailGroup
+          users={this.filterByType()}/>
         <SearchResultsContainer
           users={this.filterByType()}
           handleDoubleClick={this.handleDoubleClick}/>
