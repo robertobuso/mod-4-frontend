@@ -1,6 +1,7 @@
 import React from 'react';
 import { Form } from 'semantic-ui-react'
 
+
 const SignUpForm = (props) => (
     <Form onSubmit={(event) => props.handleFormSubmit(event, props.formState)}>
       <Form.Group widths='equal'>

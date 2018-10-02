@@ -57,9 +57,7 @@ class App extends Component {
   }
 
   handleFormSubmit = (e, formState) => {
-    debugger
     e.preventDefault()
-    debugger
     fetch('http://localhost:3000/api/v1/users', {
       method: 'POST',
       headers: {
@@ -68,7 +66,6 @@ class App extends Component {
       body: JSON.stringify(formState)
     })
     .then(r => r.json())
-    .then(res => console.log(res))
     .then(user => this.setState({currentUser: user}))
     .then(user => this.props.history.push('/mainpage'))
   }
@@ -91,11 +88,11 @@ class App extends Component {
     )
   }
 
-  renderPage = () => {
-    if (this.state.currentUser.length < 1 ){
-      return this.renderSignUpPage()
-    } else return this.renderMainPage()
-  }
+  // renderPage = () => {
+  //   if (this.state.currentUser === undefined ){
+  //     return this.renderSignUpPage()
+  //   } else return this.renderMainPage()
+  // }
 
   renderMainPage = () => {
     return (
@@ -112,7 +109,7 @@ class App extends Component {
         <Switch>
           <Route path="/welcome" render={this.renderWelcomePage}
           />
-          <Route path="/signup" render={this.renderPage}/>
+          <Route path="/signup" render={this.renderSignUpPage}/>
           <Route path="/mainpage" render={this.renderMainPage}/>
         </Switch>
       </div>
