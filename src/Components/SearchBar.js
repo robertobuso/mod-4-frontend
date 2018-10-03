@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Grid, Segment, Sticky } from 'semantic-ui-react'
+import { Grid, Segment, Sticky, Button } from 'semantic-ui-react'
 import SearchByName from '../Components/SearchByName'
 import SearchByHobby from '../Components/SearchByHobby'
 import SearchByMod from '../Components/SearchByMod'
@@ -12,6 +12,13 @@ class SearchBar extends Component {
       <Segment>
         <Sticky>
           <Grid centered columns={5} relaxed>
+            <Grid.Column>
+              <Button
+                basic color='purple'
+                content='Show All Users' onClick={this.props.allUsers}
+
+              size='small'/>
+            </Grid.Column>
             <Grid.Column>
               <SearchByHobby
                 filterBy={this.props.filterBy}/>

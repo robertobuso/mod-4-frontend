@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import UserThumbnail from './UserThumbnail'
-import { Grid, Segment, Header } from 'semantic-ui-react'
+// import { Grid, Segment, Header } from 'semantic-ui-react'
 
 class EmailGroup extends Component {
 

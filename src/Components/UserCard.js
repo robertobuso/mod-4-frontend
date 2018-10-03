@@ -3,16 +3,16 @@ import { Card, Image, Icon } from 'semantic-ui-react'
 
 const UserCard = (props) => (
     <Card>
-        <Image src={props.img_url}>
-            {/* <CloudinaryContext cloudName="dav4yqqvv">
-                {props.image}
-            </CloudinaryContext> */}
-        </Image>
-        <Card.Content extra align="center">
+      <Image src={props.img_url}>
+        {/* <CloudinaryContext cloudName="dav4yqqvv">
+          {props.image}
+        </CloudinaryContext> */}
+      </Image>
+      <Card.Content extra align="center">
         <Card.Header> {props.currentUser.name}</Card.Header>
-            <a>
-            Hobby: {(props.currentUser.hobby).charAt(0).toUpperCase() + (props.currentUser.hobby).substr(1)}
-            </a>
+        <a>
+          Hobby: {(props.currentUser.hobby).charAt(0).toUpperCase() + (props.currentUser.hobby).substr(1)}
+        </a>
         <br/>
         <Card.Content extra align="center">
             <a>

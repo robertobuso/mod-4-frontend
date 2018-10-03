@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form } from 'semantic-ui-react'
+import { Form, TextArea, Button } from 'semantic-ui-react'
 
 
 const SignUpForm = (props) => (
@@ -37,11 +37,14 @@ const SignUpForm = (props) => (
         <Form.Field name="hobby" value='music' label='Music' control='input' type='radio' />
         <Form.Field name="hobby" value='unity' label='Unity' control='input' type='radio' />
       </Form.Group>
+      <TextArea name='description' label='Description' control='input' type='textarea' rows={2}  placeholder='Tell us one interesting thing about you.' onChange={props.handleOnChange}/>
       <Form.Group>
         <div className="upload">
-          <button onClick={props.handleUploadWidget} className="upload-button">
-            Add Image
-          </button>
+          <br/>
+          <Button
+            basic color='green'
+            content='Add Image' onClick={props.handleUploadWidget} className="upload-button"
+          floated="right"/>
         </div>
       </Form.Group>
       <Form.Button content='Submit' />

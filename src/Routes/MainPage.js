@@ -4,7 +4,7 @@ import NewMemberContainer from '../Components/NewMemberContainer'
 import SearchBar from '../Components/SearchBar'
 import SearchResultsContainer from '../Components/SearchResultsContainer'
 import UserDetailsPage from '../Components/UserDetailsPage'
-import { Popup, Dimmer, Header, Icon, Segment, Button, Card, Image } from 'semantic-ui-react'
+import { Dimmer, Segment } from 'semantic-ui-react'
 import UserCard from '../Components/UserCard'
 import EmailGroup from '../Components/EmailGroup'
 
@@ -15,7 +15,7 @@ class MainPage extends Component {
     this.state = {
       nameSearchQuery: '',
       filterQuery: {},
-      clickedUser: {},
+      clickedUser: this.props.app.currentUser,
       active: false}
   }
 
@@ -30,11 +30,20 @@ class MainPage extends Component {
 
     const firstValue = this.state.filterQuery[firstKey]
 
-    const nameQuery =  searchArray.filter(user => user.name.toLowerCase().includes(this.state.nameSearchQuery.toLowerCase()))
+    const nameQuery =  searchArray.filter(user => user.name.toLowerCase().includes(this.state.nameSearchQuery.toLowerCase()) && user[firstKey] === firstValue)
 
-    const otherQueries = nameQuery.filter(user => user[firstKey] === firstValue)
+    // const otherQueries = nameQuery.filter(user => user[firstKey] === firstValue)
+    //
+    // return Object.keys(this.state.filterQuery).length === 0 ? nameQuery : otherQueries
 
-    return Object.keys(this.state.filterQuery).length === 0 ? nameQuery : otherQueries
+    return nameQuery
+  }
+
+  allUsers = () => {
+    this.setState({
+      nameSearchQuery: '',
+      filterQuery: {}
+    }, () => this.filterByType())
   }
 
   filterBy = (event, data) => {
@@ -57,13 +66,16 @@ class MainPage extends Component {
     return(
       <div>
         <Dimmer.Dimmable as={Segment} dimmed={active}>
-          <SearchBar handleNameSearch={this.handleNameSearch}
-            filterBy={this.filterBy}/>
+          <SearchBar
+            handleNameSearch={this.handleNameSearch}
+            filterBy={this.filterBy}
+            allUsers={this.allUsers}
+            nameSearchQuery={this.state.nameSearchQuery}/>
           <CurrentUserThumbnail       user={this.props.currentUser}
             handleDoubleClick={this.handleDoubleClick}
           />
-          <EmailGroup
-            users={this.filterByType()}/>
+          {/* <EmailGroup
+          users={this.filterByType()}/> */}
           <SearchResultsContainer
             users={this.filterByType()}
             handleDoubleClick={this.handleDoubleClick}/>
@@ -71,31 +83,9 @@ class MainPage extends Component {
             users={this.props.app.users}
             handleDoubleClick={this.handleDoubleClick}/>
           <Dimmer active={active}>
-            <Header as='h2' icon inverted>
-              <Icon name='beer' />
-            </Header>
-            <Card >
-              <Card.Content>
-                <Image src={this.state.clickedUser.img_url} />
-                <Card.Header>
-                  {this.state.clickedUser.name}
-                </Card.Header>
-                <Card.Meta>
-                  I'm in {this.state.clickedUser.mod}!!
-                </Card.Meta>
-                <Card.Meta>
-                  My Favorite Hobby is {this.state.clickedUser.hobby}.
-                </Card.Meta>
-                <Card.Meta>
-                  I love programming in  {this.state.clickedUser.language}.
-                </Card.Meta>
-                <Card.Description>
-                  {this.state.clickedUser.description}
-                </Card.Description>
-              </Card.Content>
-              <Button icon='minus' onClick={this.hideCard}
-              label="hide"/>
-          </Card>
+            <UserDetailsPage
+              user={this.state.clickedUser}
+              hideCard={this.hideCard}/>
               </Dimmer>
         </Dimmer.Dimmable>
       </div>

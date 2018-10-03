@@ -66,9 +66,7 @@ class App extends Component {
     })
     .then(r => r.json())
     .then(users => {
-      // console.log(users)
       const cUser = users.find(user => user.username === formState.username)
-      // console.log(cUser, formState.username)
       this.setState({users: users, currentUser: cUser}, () => this.props.history.push('/mainpage'))
     })
   }
@@ -90,12 +88,6 @@ class App extends Component {
         handleFormSubmit={this.handleFormSubmit} />
     )
   }
-
-  // renderPage = () => {
-  //   if (this.state.currentUser === undefined ){
-  //     return this.renderSignUpPage()
-  //   } else return this.renderMainPage()
-  // }
 
   renderMainPage = () => {
     return (

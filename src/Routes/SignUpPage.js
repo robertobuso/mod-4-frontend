@@ -3,7 +3,7 @@ import SignUpForm from '../Components/SignUpForm';
 import UserCard  from '../Components/UserCard';
 import { Grid, Segment } from 'semantic-ui-react';
 import axios from 'axios';
-import { CloudinaryContext, Transformation, Image } from 'cloudinary-react';
+// import { CloudinaryContext, Transformation, Image } from 'cloudinary-react';
 
 
 class SignUpPage extends Component {
@@ -20,7 +20,7 @@ class SignUpPage extends Component {
       username: ""
     }
   }
-  
+
   componentDidMount() {
     axios.get('https://res.cloudinary.com/dav4yqqvv/image/upload/accesslabs.json')
       .then(res => this.setState({img_url: res.data.url }))
