@@ -85,8 +85,11 @@ class MainPage extends Component {
           <Dimmer active={active}>
             <UserDetailsPage
               user={this.state.clickedUser}
-              hideCard={this.hideCard}/>
-              </Dimmer>
+              hideCard={this.hideCard}
+              currentUser={this.props.app.currentUser}
+              handleEdit={this.props.handleEdit}
+              handleDelete={this.props.handleDelete}/>
+          </Dimmer>
         </Dimmer.Dimmable>
       </div>
     )

@@ -11,10 +11,13 @@ class SearchBar extends Component {
     return(
       <Segment>
         <Sticky>
-          <Grid centered columns={5} relaxed>
+          <Grid
+            centered columns={5}
+            relaxed
+          >
             <Grid.Column>
               <Button
-                basic color='purple'
+                color='teal'
                 content='Show All Users' onClick={this.props.allUsers}
 
               size='small'/>

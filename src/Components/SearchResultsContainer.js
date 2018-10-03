@@ -5,14 +5,16 @@ import { Grid, Segment, Header } from 'semantic-ui-react'
 class SearchResultsContainer extends Component {
 
   render() {
+    const sortedArray = this.props.users.sort((a, b) => a.name.localeCompare(b.name))
+
     return(
       <Segment>
         <Header size='medium' textAlign='center'>
-          These Users Match Your Query
+          {this.props.users.length > 0 ? "These Users Match Your Query" : "No Users Match Your Query"}
         </Header>
         <Grid centered columns={5} relaxed>
-          {this.props.users ? this.props.users.map(user => {
-
+          {this.props.users ?
+            sortedArray.map(user => {
             return <Grid.Column key={user.id}>
               <Segment basic>
                 <UserThumbnail

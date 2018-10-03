@@ -3,7 +3,7 @@ import { Card, Image, Icon } from 'semantic-ui-react'
 
 const UserCard = (props) => (
     <Card>
-      <Image src={props.img_url}>
+      <Image src={props.currentUser.img_url}>
         {/* <CloudinaryContext cloudName="dav4yqqvv">
           {props.image}
         </CloudinaryContext> */}

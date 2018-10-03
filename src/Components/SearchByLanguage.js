@@ -15,7 +15,7 @@ const SearchByLanguage = (props) => {
   return(
     <Dropdown
       placeholder="Languages"
-      icon="beer"
+      icon="code"
       floating
       labeled
       button

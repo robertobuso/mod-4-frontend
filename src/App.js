@@ -71,6 +71,15 @@ class App extends Component {
     })
   }
 
+  handleEdit = () => {
+    this.props.history.push('/signup')
+  }
+
+  handleDelete = () => {
+
+  }
+
+
   renderWelcomePage = (props) => {
     return (
       <WelcomePage {...props}
@@ -84,7 +93,7 @@ class App extends Component {
   renderSignUpPage = () => {
     return (
       <SignUpPage
-        currentUser={this.state.username}
+        currentUser={this.state.currentUser}
         handleFormSubmit={this.handleFormSubmit} />
     )
   }
@@ -94,6 +103,8 @@ class App extends Component {
       <MainPage
         app={this.state}
         currentUser={this.state.currentUser}
+        handleEdit={this.handleEdit}
+        handleDelete={this.handleDelete}
       />
     )
   }
