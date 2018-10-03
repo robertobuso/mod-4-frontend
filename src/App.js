@@ -98,7 +98,6 @@ class App extends Component {
   // }
 
   renderMainPage = () => {
-     
     return (
       <MainPage
         app={this.state}

@@ -22,7 +22,7 @@ import {NavLink} from 'react-router-dom'
       <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
         <Grid.Column style={{ maxWidth: 450 }}>
           <Header as='h2' color='teal' textAlign='center'>
-            <Image src='https://image.spreadshirtmedia.com/image-server/v1/compositions/102772023/views/1,width=650,height=650,appearanceId=2,version=1439181421/who-needs-facebook-when-you-can-have-beerbook-social-networking-done-the-right-way-nothing-beats-an-ice-cool-beer-between-friends.jpg' /> Log-in to your account
+            <Image src='https://image.spreadshirtmedia.com/image-server/v1/compositions/102772023/views/1,width=650,height=650,appearanceId=2,version=1439181421/who-needs-facebook-when-you-can-have-beerbook-social-networking-done-the-right-way-nothing-beats-an-ice-cool-beer-between-friends.jpg' /> Welcome to BeerBook!
           </Header>
           <Form size='large' onSubmit={props.handleOnSubmit}>
             <Segment stacked>
