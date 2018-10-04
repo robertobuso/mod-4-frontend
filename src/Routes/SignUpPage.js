@@ -38,22 +38,43 @@ class SignUpPage extends Component {
 
   handleOnChange = (e) => {
     this.setState({[e.target.name]: e.target.value})
+    this.props.setCurrentUser(this.state)
+  }
+
+  // handleEditOnChange = (e) => {
+  //   console.log(e.target.value)
+  //   this.setState({e.target.name: e.target.value})
+  // }
+
+  handleEditFormSubmit = (e, formState) => {
+
+  }
+
+  handleDelete = (e, formState) => {
+
   }
 
   render() {
+
     return (
       <Grid stackable columns={2}>
         <Grid.Column>
           <Segment>
-            <SignUpForm currentUser={this.props.currentUser} handleOnChange={this.handleOnChange}  handleFormSubmit={this.props.handleFormSubmit}
+            <SignUpForm
+              currentUser={this.state}
+              currentEditUser={this.props.currentUser}
+              handleOnChange={this.handleOnChange}
+              handleFormSubmit={this.props.handleFormSubmit}
+              handleEditOnChange={this.props.handleEditOnChange}
+              handleEditFormSubmit={this.props.handleEditFormSubmit}
               formState={this.state}
-              handleRadioOnChange={this.handleRadioOnChange}
               handleUploadWidget={this.handleUploadWidget}/>
           </Segment>
         </Grid.Column>
         <Grid.Column>
           <Segment>
-            <UserCard img_url={this.state.img_url} currentUser={this.state} name={this.state.myName} mod={this.state.mod}/>
+            <UserCard img_url={this.state.img_url} currentUser={this.props.currentUser}
+              name={this.state.myName} mod={this.state.mod}/>
           </Segment>
         </Grid.Column>
       </Grid>

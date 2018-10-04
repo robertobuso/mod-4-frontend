@@ -75,10 +75,9 @@ class App extends Component {
     this.props.history.push('/signup')
   }
 
-  handleDelete = () => {
-
+  setCurrentUser = (formState) => {
+    this.setState({ currentUser: formState})
   }
-
 
   renderWelcomePage = (props) => {
     return (
@@ -94,7 +93,9 @@ class App extends Component {
     return (
       <SignUpPage
         currentUser={this.state.currentUser}
-        handleFormSubmit={this.handleFormSubmit} />
+        handleFormSubmit={this.handleFormSubmit}
+        setCurrentUser={this.setCurrentUser}
+      />
     )
   }
 
@@ -110,6 +111,7 @@ class App extends Component {
   }
 
   render() {
+
     return (
       <div className="App">
         <Switch>
